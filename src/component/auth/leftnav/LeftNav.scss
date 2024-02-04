@@ -1,0 +1,27 @@
+.leftnav {
+    flex: 4;
+    background-color: #abc1f2;
+    height: 100%;
+    position: relative;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    flex-direction: column;
+    font-size: 36px;
+    text-align: center;
+
+    .leftnav-button {
+        font-size: 28px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .leftnav-active {
+        cursor: default;
+        color: #5b86e5
+    }
+}
