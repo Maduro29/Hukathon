@@ -1,5 +1,13 @@
 import { useState } from "react"
+import {
+    isValidEmail,
+    isValidName,
+    isValidPassword,
+    isValidPhoneNumber,
+} from "../../../services/auth/verification"
 import "./Register.scss"
+import { toast } from "react-hot-toast"
+import { register } from "../../../services/auth/register"
 
 const Register = () => {
     const [email, setEmail] = useState("")
@@ -8,11 +16,70 @@ const Register = () => {
     const [phoneNumber, setPhoneNumber] = useState("")
     const [address, setAddress] = useState("")
     const [gender, setGender] = useState("")
+    const [message, setMessage] = useState("")
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (
+            !email ||
+            !password ||
+            !name ||
+            !phoneNumber ||
+            !address ||
+            !gender
+        ) {
+            setMessage("No field should be left blank!")
+        } else if (!isValidEmail(email)) {
+            setMessage("Wrong email format!")
+        } else if (!isValidPassword(password)) {
+            setMessage(
+                "The password must be at least 8 characters long, and must contain at least 1 letter, number, and symbol!",
+            )
+        } else if (!isValidName(name)) {
+            setMessage("Wrong name format!")
+        } else if (!isValidPhoneNumber(phoneNumber)) {
+            setMessage("Wrong phone number format!")
+        } else {
+            try {
+                const data = await register()
+                if (data) {
+                    toast.error("Login successfully!", {
+                        style: {
+                            border: "1px solid #713200",
+                            padding: "10px",
+                            color: "#5b86e5",
+                            fontSize: "16px",
+                        },
+                        iconTheme: {
+                            primary: "#5b86e5",
+                            secondary: "#FFFAEE",
+                        },
+                        position: "top-right",
+                    })
+                }
+            } catch (err) {
+                setMessage("")
+                toast.error("Error happens! Please try again!", {
+                    style: {
+                        border: "1px solid #713200",
+                        padding: "10px",
+                        color: "#5b86e5",
+                        fontSize: "16px",
+                    },
+                    iconTheme: {
+                        primary: "#5b86e5",
+                        secondary: "#FFFAEE",
+                    },
+                    position: "top-right",
+                })
+            }
+        }
+    }
 
     return (
         <div className="register">
             <span className="register-title">Register</span>
-            <form>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <input
                     type="email"
                     name="email"
@@ -67,6 +134,7 @@ const Register = () => {
                     value="Register"
                     className="register-submit"
                 ></input>
+                <span className="register-message">{message}</span>
             </form>
         </div>
     )

@@ -1,16 +1,63 @@
 import { useState } from "react"
 import "./Login.scss"
+import { isValidEmail } from "../../../services/auth/verification"
+import { toast } from "react-hot-toast"
+import { login } from "../../../services/auth/login"
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [message, setMessage] = useState("")
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (!email || !password) {
+            setMessage("No field should be left blank!")
+        } else if (!isValidEmail(email)) {
+            setMessage("Wrong email format!")
+        } else {
+            try {
+                const data = await login()
+                if (data) {
+                    toast.error("Login successfully!", {
+                        style: {
+                            border: "1px solid #713200",
+                            padding: "10px",
+                            color: "#5b86e5",
+                            fontSize: "16px",
+                        },
+                        iconTheme: {
+                            primary: "#5b86e5",
+                            secondary: "#FFFAEE",
+                        },
+                        position: "top-right",
+                    })
+                }
+            } catch (err) {
+                setMessage("")
+                toast.error("Error happens! Please try again!", {
+                    style: {
+                        border: "1px solid #713200",
+                        padding: "10px",
+                        color: "#5b86e5",
+                        fontSize: "16px",
+                    },
+                    iconTheme: {
+                        primary: "#5b86e5",
+                        secondary: "#FFFAEE",
+                    },
+                    position: "top-right",
+                })
+            }
+        }
+    }
 
     return (
         <div className="login">
             <span className="login-title">Login</span>
-            <form>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <input
-                    type="email"
+                    type="text"
                     name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -30,6 +77,7 @@ const Login = () => {
                     value="Login"
                     className="login-submit"
                 ></input>
+                <span className="login-message">{message}</span>
             </form>
         </div>
     )

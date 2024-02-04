@@ -28,7 +28,7 @@
             color: #5b86e5;
             outline: none
         }
-
+        
         .login-submit {
             padding: 8px 10px;
             border-radius: 8px;
@@ -37,10 +37,16 @@
             font-size: 20px;
             font-weight: bold;
             cursor: pointer;
-
+            
             &:hover {
                 opacity: 0.8;
             }
+            
+        }
+        
+        .login-message {
+            font-size: 16px;
+            color: #5b86e5;
         }
     }
 }
