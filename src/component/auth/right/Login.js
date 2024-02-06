@@ -3,11 +3,17 @@ import "./Login.scss"
 import { isValidEmail } from "../../../services/auth/verification"
 import { toast } from "react-hot-toast"
 import { login } from "../../../services/auth/login"
+import { useDispatch } from "react-redux"
+import { updateToken } from "../../../app/userSlice"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [message, setMessage] = useState("")
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -32,6 +38,9 @@ const Login = () => {
                         },
                         position: "top-right",
                     })
+
+                    dispatch(updateToken(data.token))
+                    navigate("/")
                 }
             } catch (err) {
                 setMessage("")
