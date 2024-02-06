@@ -23,7 +23,7 @@ const Login = () => {
             setMessage("Wrong email format!")
         } else {
             try {
-                const data = await login()
+                const data = await login(email, password)
                 if (data) {
                     toast.error("Login successfully!", {
                         style: {
