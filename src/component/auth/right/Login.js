@@ -25,7 +25,7 @@ const Login = () => {
             try {
                 const data = await login(email, password)
                 if (data) {
-                    toast.error("Login successfully!", {
+                    toast.success("Login successfully!", {
                         style: {
                             border: "1px solid #713200",
                             padding: "10px",
@@ -40,6 +40,7 @@ const Login = () => {
                     })
 
                     dispatch(updateToken(data.token))
+                    console.log(data.token)
                     navigate("/")
                 }
             } catch (err) {

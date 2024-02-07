@@ -3,16 +3,22 @@ import { Route, Routes } from "react-router-dom"
 import Auth from "./auth/Auth"
 import "./Page.scss"
 import { Toaster } from "react-hot-toast"
+import Place from "../component/place/Place"
+import Header from "../component/header/Header"
 
 const Page = () => {
     return (
         <div className="page-overlay">
             <div className="page">
-                <Routes>
-                    <Route path="/" element={<Home />}></Route>
-                    <Route path="/auth" element={<Auth />}></Route>
-                </Routes>
-                <Toaster />
+                <Header />
+                <div className="page-container">
+                    <Routes>
+                        <Route path="/" element={<Home />}></Route>
+                        <Route path="/auth" element={<Auth />}></Route>
+                        <Route path="/place" element={<Place />}></Route>
+                    </Routes>
+                    <Toaster />
+                </div>
             </div>
         </div>
     )

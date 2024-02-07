@@ -1,7 +1,18 @@
 .auth {
     display: flex;
-    height: 100%;
+    height: calc(100% - 82px);
     border-radius: 35px;
+
+    .auth-back {
+        border: none;
+        color: #5b86e5;
+        font-weight: bold;
+        font-size: 20px;
+        cursor: pointer;
+        background: none;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
 
     .auth-box {
         flex: 6;

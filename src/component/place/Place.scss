@@ -1,0 +1,26 @@
+.place {
+    .place-first-section {
+        display: flex;
+        gap: 20px;
+
+        .place-media {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .place-description {
+            flex: 1;
+
+            .place-des-inside {
+                width: 90%;
+            }
+        }
+    }
+
+    .place-second-section {
+        margin-top: 50px;
+    }
+}
