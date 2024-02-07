@@ -1,5 +1,6 @@
 import Description from "./description/Description"
 import Events from "./events/Events"
+import Map from "./map/Map"
 import "./Place.scss"
 import Slide from "./slide/Slide"
 
@@ -50,7 +51,9 @@ const Place = () => {
                 <div className="place-events">
                     <Events events={events} />
                 </div>
-                <div className="place-map"></div>
+                <div className="place-map">
+                    <Map />
+                </div>
             </div>
         </div>
     )
