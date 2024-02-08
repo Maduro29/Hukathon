@@ -1,14 +1,12 @@
 import "./Map.scss"
 import GoogleMapReact from "google-map-react"
 
-const Map = () => {
-    const defaultProps = {
-        center: {
-            lat: 20.8933454,
-            lng: 106.6757247,
-        },
-        zoom: 15,
-    }
+const AnyReactComponent = ({ text }) => <div>{text}</div>
+
+const Map = (props) => {
+    const { place } = props
+
+    const zoom = 15
 
     return (
         <div className="map">
@@ -18,9 +16,16 @@ const Map = () => {
                     bootstrapURLKeys={{
                         key: process.env.REACT_APP_MAP_API_KEY,
                     }}
-                    defaultCenter={defaultProps.center}
-                    defaultZoom={defaultProps.zoom}
-                ></GoogleMapReact>
+                    defaultCenter={place.center}
+                    defaultZoom={zoom}
+                    yesIWantToUseGoogleMapApiInternals
+                >
+                    <AnyReactComponent
+                        lat={place.center.lat}
+                        lng={place.center.lng}
+                        text={place.name}
+                    />
+                </GoogleMapReact>
             </div>
         </div>
     )

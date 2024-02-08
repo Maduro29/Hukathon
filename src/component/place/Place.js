@@ -35,6 +35,14 @@ const Place = () => {
         },
     ]
 
+    const place = {
+        center: {
+            lat: 20.8939428,
+            lng: 106.6761256,
+        },
+        name: "Nhà",
+    }
+
     return (
         <div className="place">
             <div className="place-first-section">
@@ -52,7 +60,7 @@ const Place = () => {
                     <Events events={events} />
                 </div>
                 <div className="place-map">
-                    <Map />
+                    <Map place={place} />
                 </div>
             </div>
         </div>
