@@ -1,0 +1,80 @@
+.event {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+    margin-bottom: 200px;
+
+    .event-title {
+        color: #5b86e5;
+        font-weight: bold;
+        font-size: 32px;
+        text-align: center;
+    }
+
+    img {
+        width: 50%;
+    }
+
+    span {
+        width: 70%;
+    }
+
+    .event-regis {
+        text-decoration: underline;
+        color: #5b86e5;
+        cursor: pointer;
+    }
+
+    .event-place {
+        .event-place-name {
+            padding: 4px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid #5b86e5;
+
+            &:hover {
+                color: #fff;
+                background-color: #5b86e5;
+            }
+        }
+    }
+
+    .event-comment-box {
+        border: 0.5px solid #5b86e5;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .event-comment-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 32px;
+            color: #5b86e5;
+        }
+
+        .event-comments {
+            display: flex;
+            gap: 5px;
+            width: 100%;
+            padding: 20px;
+            margin-left: 40px;
+            flex-direction: column;
+
+            .event-user {
+                color: #5b86e5;
+                flex: 1;
+            }
+
+            .event-comment {
+                text-align: left;
+                flex: 5;
+                margin-left: 10px;
+                font-size: 18px;
+            }
+        }
+    }
+}
