@@ -2,7 +2,7 @@ import { useState } from "react"
 import "./Search.scss"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Result from "./result/Result"
+import Result from "../../component/search/result/Result"
 
 const Search = () => {
     const [text, setText] = useState("")

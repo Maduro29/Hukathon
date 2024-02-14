@@ -3,7 +3,6 @@ import "./Notification.scss"
 
 const Notification = (props) => {
     const { notis, showNoti, setShowNoti } = props
-    console.log(props)
     const { notiList } = notis
     const ref = useRef(null)
 
@@ -18,7 +17,7 @@ const Notification = (props) => {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
-    }, [ref])
+    }, [ref, setShowNoti])
 
     return (
         <>

@@ -1,4 +1,4 @@
-import Logo from "../logo/Logo"
+import Logo from "../../component/logo/Logo"
 import "./Header.scss"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
@@ -7,7 +7,7 @@ import { useSelector } from "react-redux"
 import { removeToken, selectToken } from "../../app/userSlice"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons"
-import Notification from "./noti/Notification"
+import Notification from "../../component/header/noti/Notification"
 import { useState } from "react"
 
 const Header = () => {

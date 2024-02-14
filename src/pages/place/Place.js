@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import Description from "./description/Description"
-import Events from "./events/Events"
-import Map from "./map/Map"
+import Description from "../../component/place/description/Description"
+import Events from "../../component/place/events/Events"
+import Map from "../map/Map"
 import "./Place.scss"
-import Slide from "./slide/Slide"
+import Slide from "../../component/place/slide/Slide"
 
 const Place = () => {
     const [placeData, setPlaceData] = useState()

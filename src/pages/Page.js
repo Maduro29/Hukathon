@@ -3,10 +3,10 @@ import { Route, Routes } from "react-router-dom"
 import Auth from "./auth/Auth"
 import "./Page.scss"
 import { Toaster } from "react-hot-toast"
-import Place from "../component/place/Place"
-import Header from "../component/header/Header"
-import Search from "../component/search/Search"
-import Event from "../component/event/Event"
+import Place from "./place/Place"
+import Header from "./header/Header"
+import Search from "./search/Search"
+import Event from "./event/Event"
 
 const Page = () => {
     return (
