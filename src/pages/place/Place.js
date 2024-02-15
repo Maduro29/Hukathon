@@ -4,6 +4,8 @@ import Events from "../../component/place/events/Events"
 import "./Place.scss"
 import Slide from "../../component/place/slide/Slide"
 import GGMaps from "../../component/place/ggmaps/GGMaps"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faStar } from "@fortawesome/free-solid-svg-icons"
 
 const Place = () => {
     const [placeData, setPlaceData] = useState()
@@ -48,6 +50,10 @@ const Place = () => {
         })
     }, [])
 
+    const [ratings, setRatings] = useState(0)
+
+    const [hoverRating, setHoverRating] = useState(0)
+
     const toggleFollow = () => {
         setPlaceData((prevState) => ({
             ...prevState,
@@ -79,6 +85,24 @@ const Place = () => {
                         </div>
                         <div className="place-map">
                             <GGMaps />
+                        </div>
+                        <div className="place-ratings">
+                            <span>Ratings</span>
+                            <div className="place-stars">
+                                {[...Array(5)].map((_, i) => (
+                                    <FontAwesomeIcon
+                                        key={i}
+                                        icon={faStar}
+                                        className={`place-star ${i < hoverRating ? "active" : ""} ${i <= ratings ? "rated" : ""}`}
+                                        onMouseEnter={() =>
+                                            setHoverRating(i + 1)
+                                        }
+                                        onMouseLeave={() => setHoverRating(0)}
+                                        onClick={() => setRatings(i)}
+                                    />
+                                ))}
+                            </div>
+                            <button>Send rating</button>
                         </div>
                     </div>
                 </div>
