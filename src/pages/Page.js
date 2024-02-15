@@ -4,7 +4,7 @@ import Auth from "./auth/Auth"
 import "./Page.scss"
 import { Toaster } from "react-hot-toast"
 import Place from "./place/Place"
-import Header from "./header/Header"
+import Header from "../component/header/Header"
 import Search from "./search/Search"
 import Event from "./event/Event"
 

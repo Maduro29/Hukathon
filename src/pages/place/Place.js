@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import Description from "../../component/place/description/Description"
 import Events from "../../component/place/events/Events"
-import Map from "../map/Map"
 import "./Place.scss"
 import Slide from "../../component/place/slide/Slide"
+import GGMaps from "../../component/place/ggmaps/GGMaps"
 
 const Place = () => {
     const [placeData, setPlaceData] = useState()
@@ -78,7 +78,7 @@ const Place = () => {
                             <Events events={placeData.events} />
                         </div>
                         <div className="place-map">
-                            <Map place={placeData.place} />
+                            <GGMaps />
                         </div>
                     </div>
                 </div>
