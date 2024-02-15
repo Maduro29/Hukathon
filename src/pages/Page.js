@@ -7,6 +7,7 @@ import Place from "./place/Place"
 import Header from "../component/header/Header"
 import Search from "./search/Search"
 import Event from "./event/Event"
+import Chat from "./chat/Chat"
 
 const Page = () => {
     return (
@@ -20,6 +21,7 @@ const Page = () => {
                         <Route path="/place" element={<Place />}></Route>
                         <Route path="/search" element={<Search />}></Route>
                         <Route path="/event" element={<Event />}></Route>
+                        <Route path="/chat" element={<Chat />}></Route>
                     </Routes>
                     <Toaster />
                 </div>

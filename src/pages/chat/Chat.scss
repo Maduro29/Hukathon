@@ -1,0 +1,13 @@
+.chat {
+    display: flex;
+    margin: 0 10px;
+    height: 80vh;
+
+    .navbar {
+        flex: 4;
+    }
+
+    .chatbox {
+        flex: 11;
+    }
+}

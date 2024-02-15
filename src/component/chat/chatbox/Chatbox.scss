@@ -1,0 +1,94 @@
+.chatbox {
+    height: 80vh;
+    border: 2px solid #5b86e5;
+    padding: 12px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .chatbox-title {
+        font-weight: bold;
+        font-size: 24px;
+        color: #5b86e5;
+    }
+
+    .chatbox-messages {
+        margin-top: 10px;
+        width: 100%;
+        border: 1.6px solid #5b86e5;
+        height: 85%;
+        gap: 10px;
+        overflow-y: scroll;
+
+        .chatbox-message-box {
+            width: 100%;
+            display: flex;
+
+            .chatbox-message {
+                margin: 10px;
+                background-color: #eee;
+                display: flex;
+                flex-direction: column;
+                width: fit-content;
+                padding: 6px 10px;
+                border-radius: 8px;
+
+                .chatbox-user {
+                    font-size: 14px;
+                    color: #5b86e5;
+                }
+
+                .chatbox-content {
+                    font-size: 18px;
+                }
+            }
+
+            &.sent {
+                justify-content: flex-end;
+
+                .chatbox-message {
+                    background-color: #5b86e5;
+
+                    .chatbox-user {
+                        font-size: 14px;
+                        color: #c9e2ed;
+                    }
+
+                    .chatbox-content {
+                        font-size: 20px;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+
+    .chatbox-input-box {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 20px;
+
+        form {
+            width: 100%;
+            flex: 20;
+
+            .chatbox-input {
+                padding: 10px 0px 10px 10px;
+                font-size: 16px;
+                outline: none;
+                width: 98%;
+                border-radius: 8px;
+                border: 1.5px solid #5b86e5;
+            }
+        }
+
+        .chatbox-send {
+            color: #5b86e5;
+            cursor: pointer;
+            flex: 1;
+        }
+    }
+}
