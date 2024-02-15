@@ -8,6 +8,7 @@ import Header from "../component/header/Header"
 import Search from "./search/Search"
 import Event from "./event/Event"
 import Chat from "./chat/Chat"
+import Form from "./form/Form"
 
 const Page = () => {
     return (
@@ -22,6 +23,7 @@ const Page = () => {
                         <Route path="/search" element={<Search />}></Route>
                         <Route path="/event" element={<Event />}></Route>
                         <Route path="/chat" element={<Chat />}></Route>
+                        <Route path="/form" element={<Form />}></Route>
                     </Routes>
                     <Toaster />
                 </div>

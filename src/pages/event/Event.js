@@ -29,11 +29,22 @@ const Event = () => {
         })
     }, [])
 
+    const [isJoin, setIsJoin] = useState(false)
+
     return (
         <div className="event">
             {eventData && (
                 <>
-                    <span className="event-title">{eventData.name}</span>
+                    <div className="event-status">
+                        <span className="event-title">{eventData.name}</span>
+                        <button
+                            className="event-join"
+                            onClick={() => setIsJoin(!isJoin)}
+                        >
+                            {isJoin ? "Joined" : "Join"}
+                        </button>
+                        <button className="event-share">Share</button>
+                    </div>
                     <img src={eventData.imgUrl} alt="Event"></img>
                     <span className="event-description">
                         {eventData.description}
