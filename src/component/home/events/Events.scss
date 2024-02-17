@@ -1,0 +1,43 @@
+.events-all {
+    width: 90%;
+
+    .events-title {
+        font-size: 32px;
+        font-weight: normal;
+        color: #5b86e5;
+    }
+
+    .events-box {
+        display: flex;
+        gap: 20px;
+
+        .events-event {
+            width: 33%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 5px;
+            padding: 6px;
+            border-radius: 6px;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            height: 320px;
+            justify-content: space-between;
+            cursor: pointer;
+
+            .events-event-img {
+                height: 60%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    width: 95%;
+                }
+            }
+
+            .events-event-name {
+                font-size: 20px;
+                color: #5b86e5;
+            }
+        }
+    }
+}

@@ -1,9 +1,9 @@
 import axios from "axios"
 
-export const places = async () => {
+export const allPlaces = async () => {
     try {
-        const response = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/auth/authenticate`,
+        const response = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/places`,
             {
                 headers: {
                     "Content-Type": "application/json",
