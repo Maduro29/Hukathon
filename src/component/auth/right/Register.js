@@ -8,8 +8,12 @@ import {
 import "./Register.scss"
 import { toast } from "react-hot-toast"
 import { register } from "../../../services/auth/register"
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { updateToken } from "../../../app/userSlice"
 
 const Register = () => {
+    const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
@@ -17,6 +21,7 @@ const Register = () => {
     const [address, setAddress] = useState("")
     const [gender, setGender] = useState("")
     const [message, setMessage] = useState("")
+    const dispatch = useDispatch()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -41,7 +46,14 @@ const Register = () => {
             setMessage("Wrong phone number format!")
         } else {
             try {
-                const data = await register()
+                const data = await register(
+                    email,
+                    password,
+                    name,
+                    phoneNumber,
+                    address,
+                    gender,
+                )
                 if (data) {
                     toast.error("Login successfully!", {
                         style: {
@@ -56,6 +68,8 @@ const Register = () => {
                         },
                         position: "top-right",
                     })
+                    dispatch(updateToken(data.token))
+                    navigate("/")
                 }
             } catch (err) {
                 setMessage("")

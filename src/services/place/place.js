@@ -1,23 +1,11 @@
 import axios from "axios"
 
-export const register = async (
-    email,
-    password,
-    name,
-    phoneNumber,
-    address,
-    gender,
-) => {
+export const place = async (id) => {
     try {
         const response = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/auth/register`,
+            `${process.env.REACT_APP_BACKEND_URL}/auth/authenticate`,
             {
-                email,
-                password,
-                name,
-                phoneNumber,
-                address,
-                gender,
+                id,
             },
             {
                 headers: {
