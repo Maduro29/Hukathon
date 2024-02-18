@@ -1,7 +1,9 @@
 import "./Places.scss"
+import { useNavigate } from "react-router-dom"
 
 const Places = (props) => {
     const { places } = props
+    const navigate = useNavigate()
 
     return (
         <div className="places">
@@ -9,7 +11,13 @@ const Places = (props) => {
             <div className="places-box">
                 {places &&
                     places.map((place) => (
-                        <div className="places-place" key={place.id}>
+                        <div
+                            className="places-place"
+                            key={place.id}
+                            onClick={() => {
+                                navigate(`/place?id=${place.id}`)
+                            }}
+                        >
                             <div className="places-place-img">
                                 <img
                                     src={place.images[0].imageLink}
