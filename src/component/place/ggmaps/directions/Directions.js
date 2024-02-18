@@ -12,7 +12,7 @@ const Directions = (props) => {
     const selected = routes[routeIndex]
     const leg = selected?.legs[0]
     const [fare, setFare] = useState("")
-    const { startPoint } = props
+    const { startPoint, destination } = props
 
     useEffect(() => {
         if (!routesLibrary || !map) return
@@ -26,7 +26,7 @@ const Directions = (props) => {
         directionsService
             .route({
                 origin: startPoint,
-                destination: "THPT Chuyên Trần Phú, Hải Phòng",
+                destination: destination,
                 travelMode: "TRANSIT",
                 provideRouteAlternatives: true,
             })

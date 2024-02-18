@@ -3,7 +3,8 @@ import Directions from "./directions/Directions"
 import "./GGMaps.scss"
 import { useState } from "react"
 
-const GGMaps = () => {
+const GGMaps = (props) => {
+    const { destination } = props
     const [startPoint, setStartPoint] = useState("Đại học Sư Phạm Hà Nội")
 
     const onMapClick = (e) => {
@@ -23,7 +24,10 @@ const GGMaps = () => {
                     fullscreenControl={false}
                     onClick={(e) => onMapClick(e)}
                 >
-                    <Directions startPoint={startPoint} />
+                    <Directions
+                        startPoint={startPoint}
+                        destination={destination}
+                    />
                 </Map>
             </APIProvider>
         </div>

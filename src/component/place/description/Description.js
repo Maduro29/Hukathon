@@ -1,8 +1,7 @@
 import "./Description.scss"
 
 const Description = (props) => {
-    const { des_data, follow, toggleFollow } = props
-    const { name, address, description } = des_data
+    const { follow, toggleFollow, name, address, description } = props
 
     return (
         <div className="description">

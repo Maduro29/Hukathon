@@ -24,8 +24,8 @@ const Slide = (props) => {
             <div className="slide-box">
                 <img
                     className="slide-image"
-                    src={images[index].url}
-                    alt={images[index].url}
+                    src={images[index].imageLink}
+                    alt={images[index].imageLink}
                 ></img>
                 <span className="slide-description">
                     {images[index].description}
