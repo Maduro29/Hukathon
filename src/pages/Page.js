@@ -9,6 +9,8 @@ import Search from "./search/Search"
 import Event from "./event/Event"
 import Chat from "./chat/Chat"
 import Form from "./form/Form"
+import Token from "../component/auth/token/Token"
+import User from "./user/User"
 
 const Page = () => {
     return (
@@ -22,8 +24,23 @@ const Page = () => {
                         <Route path="/place" element={<Place />}></Route>
                         <Route path="/search" element={<Search />}></Route>
                         <Route path="/event" element={<Event />}></Route>
-                        <Route path="/chat" element={<Chat />}></Route>
+                        <Route
+                            path="/chat"
+                            element={
+                                <Token>
+                                    <Chat />
+                                </Token>
+                            }
+                        ></Route>
                         <Route path="/form" element={<Form />}></Route>
+                        <Route
+                            path="/user"
+                            element={
+                                <Token>
+                                    <User />
+                                </Token>
+                            }
+                        ></Route>
                     </Routes>
                     <Toaster />
                 </div>

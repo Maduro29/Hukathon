@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons"
 import Notification from "./noti/Notification"
 import { useState } from "react"
+import Token from "../auth/token/Token"
 
 const Header = () => {
     const navigate = useNavigate()
@@ -92,11 +93,13 @@ const Header = () => {
                             <span className="header-noti-number">
                                 {notis.rest}
                             </span>
-                            <Notification
-                                notis={notis}
-                                showNoti={showNoti}
-                                setShowNoti={setShowNoti}
-                            />
+                            <Token>
+                                <Notification
+                                    notis={notis}
+                                    showNoti={showNoti}
+                                    setShowNoti={setShowNoti}
+                                />
+                            </Token>
                         </button>
                         <button
                             className="header-logout"

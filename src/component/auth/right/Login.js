@@ -4,7 +4,7 @@ import { isValidEmail } from "../../../services/auth/verification"
 import { toast } from "react-hot-toast"
 import { login } from "../../../services/auth/login"
 import { useDispatch } from "react-redux"
-import { updateToken } from "../../../app/userSlice"
+import { updateToken, updateUser } from "../../../app/userSlice"
 import { useNavigate } from "react-router-dom"
 
 const Login = () => {
@@ -39,7 +39,8 @@ const Login = () => {
                         position: "top-right",
                     })
 
-                    dispatch(updateToken(data.token))
+                    dispatch(updateToken({ token: data.token }))
+                    dispatch(updateUser({ user: data.user }))
                     console.log(data.token)
                     navigate("/")
                 }

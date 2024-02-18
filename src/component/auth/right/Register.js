@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast"
 import { register } from "../../../services/auth/register"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
-import { updateToken } from "../../../app/userSlice"
+import { updateToken, updateUser } from "../../../app/userSlice"
 
 const Register = () => {
     const navigate = useNavigate()
@@ -68,7 +68,8 @@ const Register = () => {
                         },
                         position: "top-right",
                     })
-                    dispatch(updateToken(data.token))
+                    dispatch(updateToken({ token: data.token }))
+                    dispatch(updateUser({ user: data.user }))
                     navigate("/")
                 }
             } catch (err) {

@@ -1,0 +1,19 @@
+.result-user {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    height: fit-content;
+    flex-direction: column;
+
+    button {
+        padding: 4px 10px;
+        background-color: none;
+        cursor: pointer;
+        border-radius: 6px;
+        border: 1.5px solid #5b86e5;
+        color: #5b86e5;
+        background-color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
