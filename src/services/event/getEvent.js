@@ -1,12 +1,9 @@
 import axios from "axios"
 
-export const event = async (id) => {
+export const getEvent = async (id) => {
     try {
-        const response = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/auth/authenticate`,
-            {
-                id,
-            },
+        const response = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/events/${id}`,
             {
                 headers: {
                     "Content-Type": "application/json",

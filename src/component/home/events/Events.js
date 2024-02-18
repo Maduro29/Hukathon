@@ -6,7 +6,7 @@ const Events = (props) => {
     const navigate = useNavigate()
 
     const viewPlace = (id) => {
-        navigate(`/event/${id}`)
+        navigate(`/event?id=${id}`)
     }
 
     return (

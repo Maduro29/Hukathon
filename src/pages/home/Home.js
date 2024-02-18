@@ -23,7 +23,7 @@ const Home = () => {
                 }
             } catch (err) {
                 console.log(err)
-                toast.error("Error happens 1! Please try again!")
+                toast.error("Error happens! Please try again!")
             }
         }
 
@@ -43,7 +43,7 @@ const Home = () => {
                 }
             } catch (err) {
                 console.log(err)
-                toast.error("Error happens 2! Please try again!")
+                toast.error("Error happens! Please try again!")
             }
         }
 
