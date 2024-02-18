@@ -40,7 +40,7 @@ const Login = () => {
                     })
 
                     dispatch(updateToken({ token: data.token }))
-                    dispatch(updateUser({ user: data.user }))
+                    dispatch(updateUser({ user: data.userDto }))
                     console.log(data.token)
                     navigate("/")
                 }

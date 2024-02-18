@@ -1,10 +1,18 @@
 import React, { useEffect, useRef } from "react"
+import { toast } from "react-hot-toast"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { selectToken, selectUser } from "../../../app/userSlice"
+import { updateNotification } from "../../../services/user/updateNotification"
 import "./Notification.scss"
 
 const Notification = (props) => {
-    const { notis, showNoti, setShowNoti } = props
-    const { notiList } = notis
+    const { notis, showNoti, setShowNoti, updateNotis } = props
     const ref = useRef(null)
+    const user = useSelector(selectUser)
+    const userId = user.userId
+    const token = useSelector(selectToken)
+    const navigate = useNavigate()
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -19,9 +27,23 @@ const Notification = (props) => {
         }
     }, [ref, setShowNoti])
 
+    const updateRead = async (id) => {
+        try {
+            const data = await updateNotification(userId, id, token)
+            if (data) {
+                toast.success("Action completed!")
+                updateNotis()
+            } else {
+                toast.error("Action failed!")
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <>
-            {showNoti && (
+            {showNoti && notis && (
                 <div className="noti" ref={ref}>
                     <span
                         className="noti-head-title"
@@ -29,16 +51,33 @@ const Notification = (props) => {
                     >
                         Notification
                     </span>
-                    {notiList.map((noti) => (
+                    {notis.map((noti) => (
                         <div
                             className={
-                                "noti-noti" + (!noti.view ? " not-view" : "")
+                                "noti-noti" + (!noti.read ? " not-view" : "")
                             }
+                            key={noti.notificationId}
                         >
-                            <span className="noti-title">{noti.title}</span>
-                            <span className="noti-description">
-                                {noti.description}
-                            </span>
+                            <div
+                                className="noti-box"
+                                onClick={() => {
+                                    navigate(`event?id=${noti.event.id}`)
+                                }}
+                            >
+                                <span className="noti-title">{noti.title}</span>
+                                <span className="noti-description">
+                                    {noti.content}
+                                </span>
+                            </div>
+                            <div className="noti-update">
+                                <span
+                                    onClick={() =>
+                                        updateRead(noti.notificationId)
+                                    }
+                                >
+                                    Mark as {noti.read ? "unread" : "read"}
+                                </span>
+                            </div>
                         </div>
                     ))}
                 </div>

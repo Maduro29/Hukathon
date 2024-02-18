@@ -4,18 +4,22 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { changeToLogin, changeToRegister } from "../../app/authSlice"
 import { useSelector } from "react-redux"
-import { removeToken, selectToken } from "../../app/userSlice"
+import { removeToken, selectToken, selectUser } from "../../app/userSlice"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons"
 import Notification from "./noti/Notification"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Token from "../auth/token/Token"
+import { getNotifications } from "../../services/user/getNotifications"
 
 const Header = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const isLogin = useSelector(selectToken)
+    const token = useSelector(selectToken)
     const [showNoti, setShowNoti] = useState(false)
+    const [notis, setNotis] = useState()
+    const user = useSelector(selectUser)
+    const userId = user.userId
 
     const goToHome = () => {
         navigate("/")
@@ -36,26 +40,22 @@ const Header = () => {
         navigate("/")
     }
 
-    const notis = {
-        rest: 2,
-        notiList: [
-            {
-                title: "Event 1",
-                description: "Event started!",
-                view: false,
-            },
-            {
-                title: "Event 2",
-                description: "Event started!",
-                view: false,
-            },
-            {
-                title: "Event 3",
-                description: "Event started!",
-                view: true,
-            },
-        ],
+    const updateNotis = async () => {
+        try {
+            const data = await getNotifications(userId, token)
+            if (data) {
+                setNotis(data)
+            } else {
+                console.log("Error")
+            }
+        } catch (err) {
+            console.error(err)
+        }
     }
+
+    useEffect(() => {
+        updateNotis()
+    }, [])
 
     const goToSearch = (e) => {
         navigate("/search")
@@ -71,7 +71,7 @@ const Header = () => {
                 <button className="header-logo" onClick={(e) => goToHome(e)}>
                     <Logo />
                 </button>
-                {isLogin !== "" && (
+                {token !== "" && (
                     <>
                         <button
                             className="header-search"
@@ -83,7 +83,7 @@ const Header = () => {
                 )}
             </div>
             <div className="header-auth">
-                {isLogin !== "" ? (
+                {notis && token !== "" ? (
                     <>
                         <button className="header-noti">
                             <FontAwesomeIcon
@@ -91,13 +91,14 @@ const Header = () => {
                                 onClick={() => toggleNoti()}
                             />
                             <span className="header-noti-number">
-                                {notis.rest}
+                                {notis.length}
                             </span>
                             <Token>
                                 <Notification
                                     notis={notis}
                                     showNoti={showNoti}
                                     setShowNoti={setShowNoti}
+                                    updateNotis={updateNotis}
                                 />
                             </Token>
                         </button>

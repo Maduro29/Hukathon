@@ -69,7 +69,7 @@ const Register = () => {
                         position: "top-right",
                     })
                     dispatch(updateToken({ token: data.token }))
-                    dispatch(updateUser({ user: data.user }))
+                    dispatch(updateUser({ user: data.userDto }))
                     navigate("/")
                 }
             } catch (err) {

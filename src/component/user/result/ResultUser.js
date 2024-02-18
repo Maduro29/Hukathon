@@ -7,7 +7,7 @@ import "./ResultUser.scss"
 const ResultUser = (props) => {
     const { data } = props
     const user = useSelector(selectUser)
-    const userId = user.id
+    const userId = user.userId
     const token = useSelector(selectToken)
     console.log(data.id, userId)
 

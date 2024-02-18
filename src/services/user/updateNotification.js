@@ -1,17 +1,16 @@
 import axios from "axios"
 
-export const login = async (email, password) => {
+export const updateNotification = async (id, notificationId, token) => {
     try {
-        console.log(email, password)
         const response = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/auth/authenticate`,
+            `${process.env.REACT_APP_BACKEND_URL}/users/${id}/notifications`,
             {
-                email,
-                password,
+                notificationId,
             },
             {
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
                 },
             },
         )
