@@ -26,7 +26,7 @@ const Directions = (props) => {
         directionsService
             .route({
                 origin: startPoint,
-                destination: destination,
+                destination: "Salon Toni Thong",
                 travelMode: "TRANSIT",
                 provideRouteAlternatives: true,
             })
