@@ -19,7 +19,6 @@ const Header = () => {
     const [showNoti, setShowNoti] = useState(false)
     const [notis, setNotis] = useState()
     const user = useSelector(selectUser)
-    const userId = user.userId
 
     const goToHome = () => {
         navigate("/")
@@ -42,7 +41,7 @@ const Header = () => {
 
     const updateNotis = async () => {
         try {
-            const data = await getNotifications(userId, token)
+            const data = await getNotifications(user.userId, token)
             if (data) {
                 setNotis(data)
             } else {
