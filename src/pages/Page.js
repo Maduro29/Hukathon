@@ -11,6 +11,7 @@ import Chat from "./chat/Chat"
 import Form from "./form/Form"
 import Token from "../component/auth/token/Token"
 import User from "./user/User"
+import Pending from "./pending/Pending"
 
 const Page = () => {
     return (
@@ -38,6 +39,14 @@ const Page = () => {
                             element={
                                 <Token>
                                     <User />
+                                </Token>
+                            }
+                        ></Route>
+                        <Route
+                            path="/pending"
+                            element={
+                                <Token>
+                                    <Pending />
                                 </Token>
                             }
                         ></Route>

@@ -9,7 +9,6 @@ const ResultUser = (props) => {
     const user = useSelector(selectUser)
     const userId = user.userId
     const token = useSelector(selectToken)
-    console.log(data.id, userId)
 
     const addFriend = async (user_id1, user_id2) => {
         try {

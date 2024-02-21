@@ -1,0 +1,36 @@
+.pending {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+
+    .pending-title {
+        color: #5b86e5;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .pending-box {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .pending-req {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 10px;
+            padding: 20px;
+            border-radius: 10px;
+
+            button {
+                cursor: pointer;
+                border: none;
+                font-size: 20px;
+                color: #5b86e5;
+                background-color: transparent;
+            }
+        }
+    }
+}
