@@ -3,7 +3,6 @@ import "./Result.scss"
 const Result = (props) => {
     const { result } = props
     const { events, places } = result
-    console.log(events, places)
 
     return (
         <div className="result">

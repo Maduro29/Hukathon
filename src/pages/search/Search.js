@@ -3,6 +3,8 @@ import "./Search.scss"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Result from "../../component/search/result/Result"
+import { toast } from "react-hot-toast"
+import { searchAll } from "../../services/search/searchAll"
 
 const Search = () => {
     const [text, setText] = useState("")
@@ -54,23 +56,32 @@ const Search = () => {
         setTags([])
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        const data = {
-            text,
-            tags,
-            district,
-            fromDate: {
-                fromMonth,
-                fromYear,
-            },
-            toDate: {
-                toMonth,
-                toYear,
-            },
+        try {
+            const fromDate = {
+                fromMonth: fromMonth,
+                fromYear: fromYear,
+            }
+            const toDate = {
+                toMonth: toMonth,
+                toYear: toYear,
+            }
+            const response = await searchAll(
+                district,
+                fromDate,
+                tags,
+                text,
+                toDate,
+            )
+            if (response) {
+                setResult(response)
+            } else {
+                toast.error("Error in search")
+            }
+        } catch (err) {
+            console.error(err)
         }
-        console.log(data)
-        setResult(result)
     }
 
     return (

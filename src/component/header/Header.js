@@ -40,21 +40,44 @@ const Header = () => {
     }
 
     const updateNotis = async () => {
-        try {
-            const data = await getNotifications(user.userId, token)
-            if (data) {
-                setNotis(data)
-            } else {
-                console.log("Error")
+        if (user) {
+            try {
+                const data = await getNotifications(user.userId, token)
+                if (data) {
+                    setNotis(data)
+                } else {
+                    console.log("Error")
+                }
+            } catch (err) {
+                console.error(err)
             }
-        } catch (err) {
-            console.error(err)
         }
     }
 
     useEffect(() => {
         updateNotis()
-    }, [])
+        const eventSource = new EventSource(
+            "http://192.168.0.101:8080/stream-sse",
+        )
+
+        eventSource.addEventListener("custom-event", function (event) {
+            console.log("Received a custom event: ", JSON.parse(event.data))
+            if (JSON.parse(event.data).userId) {
+                const idList = JSON.parse(event.data).userId
+                if (user && idList.includes(user.userId)) {
+                    updateNotis()
+                }
+            }
+        })
+
+        eventSource.onmessage = function (event) {
+            console.log(event.data)
+        }
+
+        // eventSource.onerror = function (error) {
+        //     console.error("Failed to connect to SSE", error)
+        // }
+    }, []) // Chạy một lần khi component được mount để lấy thông báo
 
     const goToSearch = (e) => {
         navigate("/search")
@@ -63,6 +86,11 @@ const Header = () => {
     const toggleNoti = () => {
         setShowNoti(!showNoti)
     }
+
+    // useEffect(() => {
+    //     // Initialize Socket.IO connection
+    //     socket.on()
+    // }, [])
 
     return (
         <div className="header">

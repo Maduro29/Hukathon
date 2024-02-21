@@ -4,6 +4,9 @@ import { useLocation } from "react-router-dom"
 import { getEvent } from "../../services/event/getEvent"
 import { toast } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { selectToken, selectUser } from "../../app/userSlice"
+import { shareEvent } from "../../services/event/shareEvent"
 
 const Event = () => {
     const [eventData, setEventData] = useState()
@@ -11,6 +14,13 @@ const Event = () => {
     const params = new URLSearchParams(location.search)
     const id = params.get("id")
     const navigate = useNavigate()
+    const user = useSelector(selectUser)
+    const [userId, setUserId] = useState()
+    const token = useSelector(selectToken)
+
+    useEffect(() => {
+        user ? setUserId(user.userId) : setUserId(null)
+    }, [user])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,6 +42,19 @@ const Event = () => {
         fetchData()
     }, [])
 
+    const share = async () => {
+        try {
+            const data = await shareEvent(userId, id, token)
+            if (data) {
+                console.log("ok")
+            } else {
+                console.log("no oke")
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
     const [isJoin, setIsJoin] = useState(false)
 
     return (
@@ -46,7 +69,9 @@ const Event = () => {
                         >
                             {isJoin ? "Joined" : "Join"}
                         </button>
-                        <button className="event-share">Share</button>
+                        <button className="event-share" onClick={() => share()}>
+                            Share
+                        </button>
                     </div>
                     <img
                         src={eventData.eventImages[0].imageLink}
