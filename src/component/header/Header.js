@@ -19,6 +19,7 @@ const Header = () => {
     const [showNoti, setShowNoti] = useState(false)
     const [notis, setNotis] = useState()
     const user = useSelector(selectUser)
+    const email = user && user.email
 
     const goToHome = () => {
         navigate("/")
@@ -108,6 +109,7 @@ const Header = () => {
                         </button>
                     </>
                 )}
+                <span className="header-email">{email}</span>
             </div>
             <div className="header-auth">
                 {notis && token !== "" ? (

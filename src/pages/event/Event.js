@@ -90,7 +90,7 @@ const Event = () => {
                     >
                         Registration Link
                     </span>
-                    <span className="event-place">
+                    {/* <span className="event-place">
                         <span style={{ color: "#5b86e5" }}>Place: </span>
                         <span
                             className="event-place-name"
@@ -100,7 +100,7 @@ const Event = () => {
                         >
                             {eventData.place.name}
                         </span>
-                    </span>
+                    </span> */}
                     <div className="event-comment-box">
                         {/* <span className="event-comment-title">Comments</span>
                         {eventData.comments.map((cmt) => (
